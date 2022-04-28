@@ -7,25 +7,20 @@
 -------------------------------------------------------------------------------
 License
     This file is part of OpenFOAM.
-
     OpenFOAM is free software: you can redistribute it and/or modify it
     under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-
     OpenFOAM is distributed in the hope that it will be useful, but WITHOUT
     ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
     FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
     for more details.
-
     You should have received a copy of the GNU General Public License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
-
 \*---------------------------------------------------------------------------*/
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 // mixture diffusivity (m2/s)  12.180
-
 template<class ThermoType>
 inline Foam::PtrList<Foam::volScalarField> Foam::reactingMixture<ThermoType>::D
 (
@@ -77,8 +72,8 @@ inline Foam::PtrList<Foam::volScalarField> Foam::reactingMixture<ThermoType>::D
    	    }
            
         gas_.setState_TPY(Ttmp, ptmp, YNew.data());
-	if (constantLewis_ || unityLewis_)
-	     {
+	      if (constantLewis_ || unityLewis_)
+	      {
             forAll (Y, isp)
             {
                 if (LewisNum_[isp] < 1.0e-20)
@@ -147,16 +142,7 @@ inline Foam::PtrList<Foam::volScalarField> Foam::reactingMixture<ThermoType>::D
 		}
 		
 	}	
-	
-        forAll(Y, i)
-        {
-                DNew[i] = mixDiffs[i]*1.0*
-                dimensionedScalar("tmpw",
-                dimArea/dimTime, 1.0);
-;
-        }
-
-			
+				
 	return DNew;		
 }
 
@@ -469,7 +455,7 @@ inline Foam::PtrList<Foam::volVectorField>
 ) const
 {			
     
-    // VNew: diffusion velocity multiply mass fraction	
+    // VNew: diffusion velocity multiply mass fraction	 
 	PtrList<volVectorField> VNew(nsp_);
 	PtrList<volVectorField> DmNew(nsp_);	
 	volVectorField gradT = fvc::grad(T).ref();
