@@ -1,4 +1,5 @@
 {
+    volScalarField tempT = T; 
     volScalarField& he = thermo.he();
 
     fvScalarMatrix EEqn
@@ -39,24 +40,8 @@
 
     Info << "min/max(T) = "
          << min(T).value() << ", " << max(T).value() << endl;
+    // update oldT for CoDAC
+    oldT = tempT;
 }
 
-// write Lewis Number out @ maximum temperature cell
-/*forAll(mesh.cells(), celli)
-{
-	if ( abs( T[celli]-max(T).value() ) < 1.0e-10 )
-	{
-		forAll (Y, k)
-		{
-            scalar Diff =  dynamic_cast<const reactingMixture<gasHThermoPhysics>&>
-                              (composition).D(p, T, Y)[k][celli];
-			if (Diff > 1.0e-20) 
-			{
-				scalar Lewis = thermo.alpha()[celli]/Diff;
-	            LewisNumber
-                << k << tab << Lewis << endl;	
-			}
 
-		}
-	}
-}*/
